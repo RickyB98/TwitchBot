@@ -26,7 +26,7 @@ if (preg_match("/:(\S+)!\S+@\S+ JOIN (#\S+)/i", $read, $match)) { user_joined($m
 if (preg_match("/:(\S+)!\S+@\S+ PART (#\S+)/i", $read, $match)) { user_parted($match[1], $match[2]); }
 if (preg_match("/:(\S+)!\S+@\S+ PRIVMSG (#\S+) :(.*)/i", $read, $match)) { inc_message($match[1], $match[2], $match[3]); }
 if (preg_match("/:jtv!jtv@\S+ PRIVMSG $nick :(\S+)/i", $read, $match)) {jtv_error($match[1]);}
-if (preg_match("/PING :.*/i", $read, $match)) { fwrite($fp, "PONG :$match[1]\r\n"); }
+if (preg_match("/PING :(.*)/i", $read, $match)) { fwrite($fp, "PONG :$match[1]\r\n"); }
 }
 function user_joined($nick, $chan) {
 global $users;
